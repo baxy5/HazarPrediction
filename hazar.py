@@ -1,4 +1,5 @@
 import pandas as pd
+import streamlit as st
 
 from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import MinMaxScaler
@@ -36,3 +37,13 @@ y_pred = model.predict(X_test)
 # Modell teljesítményének értékelése
 mse = mean_squared_error(y_test, y_pred)
 print(f"Mean Squared Error: {mse}")
+
+# Streamlit alkalmazás
+st.title("Házár predikció")
+st.write("Add meg az ingatlan jellemzőit, és megjósoljuk az árát.")
+
+# Input mezők az ingatlan jellemzőinek (minden szükséges jellemző)
+medinc = st.number_input("Közepes jövedelem (MedInc)", min_value=0.0, max_value=20.0, value=3.0)
+houseage = st.number_input("Ház életkora (HouseAge)", min_value=1.0, max_value=100.0, value=20.0)
+ave_rooms = st.number_input("Átlagos szobaszám (AveRooms)", min_value=1.0, max_value=10.0, value=5.0)
+ave_bedrooms = st.number_input("Átlagos hálószobaszám (AveBedrms)", min_value=1.0, max_value=5.0, value=2.0)
