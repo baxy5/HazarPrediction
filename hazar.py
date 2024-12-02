@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
 
 from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import MinMaxScaler
@@ -56,3 +57,16 @@ longitude = st.number_input("Hosszúsági fok (Longitude)", min_value=-124.0, ma
 # Bemeneti adatok előkészítése és skálázása
 input_data = np.array([[medinc, houseage, ave_rooms, ave_bedrooms, population, ave_occup, latitude, longitude]])
 scaled_input = scaler.transform(input_data)
+
+# Előrejelzés készítése
+prediction = model.predict(scaled_input)
+
+st.write(f"Előrejelzett ár: ${prediction[0]:,.2f}")
+
+# Eredmények vizualizálása
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, alpha=0.7)
+plt.xlabel("Tényleges ár")
+plt.ylabel("Előrejelzett ár")
+plt.title("Tényleges árak vs. Előrejelzett árak")
+st.pyplot(plt)
