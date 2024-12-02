@@ -6,3 +6,6 @@ from sklearn.datasets import fetch_california_housing
 housing = fetch_california_housing()
 data = pd.DataFrame(housing.data, columns=housing.feature_names)
 data['PRICE'] = housing.target
+
+# Ellenőrizzük a hiányzó értékeket
+print(data.isnull().sum())
