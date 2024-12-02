@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import numpy as np
 
 from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import MinMaxScaler
@@ -47,3 +48,11 @@ medinc = st.number_input("Közepes jövedelem (MedInc)", min_value=0.0, max_valu
 houseage = st.number_input("Ház életkora (HouseAge)", min_value=1.0, max_value=100.0, value=20.0)
 ave_rooms = st.number_input("Átlagos szobaszám (AveRooms)", min_value=1.0, max_value=10.0, value=5.0)
 ave_bedrooms = st.number_input("Átlagos hálószobaszám (AveBedrms)", min_value=1.0, max_value=5.0, value=2.0)
+population = st.number_input("Népesség (Population)", min_value=1.0, max_value=5000.0, value=300.0)
+ave_occup = st.number_input("Átlagos lakók száma (AveOccup)", min_value=1.0, max_value=10.0, value=3.0)
+latitude = st.number_input("Szélességi fok (Latitude)", min_value=32.0, max_value=42.0, value=34.0)
+longitude = st.number_input("Hosszúsági fok (Longitude)", min_value=-124.0, max_value=-114.0, value=-118.0)
+
+# Bemeneti adatok előkészítése és skálázása
+input_data = np.array([[medinc, houseage, ave_rooms, ave_bedrooms, population, ave_occup, latitude, longitude]])
+scaled_input = scaler.transform(input_data)
